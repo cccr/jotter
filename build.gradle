@@ -1,0 +1,26 @@
+jar {
+    def manifestClasspath = ' ./ ' + configurations.compile.collect{ 'lib/' + it.getName() }.join(' ')
+    
+    manifest {
+        attributes "Main-Class" : "com.veeam.sf.download.Main"
+        attributes 'Class-Path': manifestClasspath
+    }
+    
+    from (configurations.compile.resolve().collect { it.isDirectory() ? it : fileTree(it) }) {
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/*.SF'
+        exclude 'META-INF/*.DSA'
+        exclude 'META-INF/*.RSA'
+    }
+
+    destinationDir = file("distribution")
+    archiveName = 'download.jar'
+}
+
+task dist << {
+    copy {
+        from configurations.compile
+        into file('distribution/lib')
+    }
+}
+jar.finalizedBy(dist)
