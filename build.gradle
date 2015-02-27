@@ -6,6 +6,8 @@ jar {
         attributes 'Class-Path': manifestClasspath
     }
     
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    
     from (configurations.compile.resolve().collect { it.isDirectory() ? it : fileTree(it) }) {
         exclude 'META-INF/MANIFEST.MF'
         exclude 'META-INF/*.SF'
