@@ -2,7 +2,7 @@ jar {
     def manifestClasspath = ' ./ ' + configurations.compile.collect{ 'lib/' + it.getName() }.join(' ')
     
     manifest {
-        attributes "Main-Class" : "com.veeam.sf.download.Main"
+        attributes "Main-Class" : "com.sf.download.Main"
         attributes 'Class-Path': manifestClasspath
     }
     
