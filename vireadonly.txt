@@ -1,0 +1,9 @@
+:w !sudo tee %
+
+What the command does:
+:w = Write a file.
+!sudo = Call shell sudo command.
+tee = The output of the vi/vim write command is redirected using tee.
+% = Triggers the use of the current filename.
+
+(c) http://www.geekyboy.com/archives/629
