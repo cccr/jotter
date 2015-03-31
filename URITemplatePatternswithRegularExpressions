@@ -1,0 +1,7 @@
+http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates-regex
+
+@RequestMapping("/spring-web/{symbolicName:[a-z-]}-{version:\\d\\.\\d\\.\\d}{extension:\\.[a-z]}")
+    public void handle(@PathVariable String version, @PathVariable String extension) {
+        // ...
+    }
+}
