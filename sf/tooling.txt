@@ -1,0 +1,1 @@
+String query = "select id,name,LengthWithoutComments,metadata,lastmodifieddate,fullname from apexclass where NamespacePrefix='' and lastmodifieddate>2015-04-06T15:08:47Z";
