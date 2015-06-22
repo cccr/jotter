@@ -1,0 +1,2 @@
+SELECT  day_only(createdDate) createdonDate, 
+    count(createdDate) numCreated  FROM customer_activity__c where createdDate > LAST_MONTH group by day_only(createdDate) order by day_only(createdDate) desc
