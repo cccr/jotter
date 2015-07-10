@@ -1,0 +1,2 @@
+FeedItem[] items = [select id from FeedItem where type = 'TrackedChange'];
+delete items;
