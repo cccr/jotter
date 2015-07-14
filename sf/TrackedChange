@@ -1,2 +1,8 @@
 FeedItem[] items = [select id from FeedItem where type = 'TrackedChange'];
 delete items;
+
+
+Map<Id, CollaborationGroup> groups = new Map<Id, CollaborationGroup>([Select Id From CollaborationGroup
+        where NetworkId in (select id from network where name = 'dr')]);
+FeedItem[] items = [select id, ParentId from FeedItem where type = 'TrackedChange' and parentid in :groups.keySet()];
+delete items;
