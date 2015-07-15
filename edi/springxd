@@ -1,1 +1,1 @@
-stream create ediInputFiles --definition "file --outputType=text/plain --dir=C:\inbox | rabbit --addresses=ledbessf01:5672 --username=edi --password=edi --routingKey='\"ediInbox\"'" --deploy
+stream create ediInputFiles --definition "file --outputType=text/plain --pattern=*-veeam-* --dir=C:\Users\pkorshunov\Downloads\OpenAS2_20100816\config\inbox | rabbit --routingKey='\"edi\"' --addresses=ledbessf01:5672 --username=edi --password=edi" --deploy
