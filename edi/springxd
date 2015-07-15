@@ -1,0 +1,1 @@
+stream create ediInputFiles --definition "file --outputType=text/plain --dir=C:\inbox | rabbit --addresses=ledbessf01:5672 --username=edi --password=edi --routingKey='\"ediInbox\"'" --deploy
