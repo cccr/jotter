@@ -1,0 +1,5 @@
+server.ssl.key-store = classpath:trust.jks
+or
+server.ssl.key-store = trust.jks
+server.ssl.key-store-password = trust
+server.ssl.key-password = trust
