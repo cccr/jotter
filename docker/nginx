@@ -1,0 +1,2 @@
+sudo docker pull nginx
+sudo docker run --name test-nginx -v /opt/test/frontend:/usr/share/nginx/html:ro -d -p 8780:80 nginx
