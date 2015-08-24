@@ -1,0 +1,2 @@
+http://www.cyberciti.biz/faq/nginx-self-signed-certificate-tutorial-on-centos-redhat-linux/
+openssl req -x509 -nodes -days 36500 -newkey rsa:4096 -keyout c:/nginx/nginx-1.7.3/conf/petr.key -out c:/nginx/nginx-1.7.3/conf/petr.crt -config ./openssl.cfg
