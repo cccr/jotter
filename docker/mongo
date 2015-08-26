@@ -1,0 +1,10 @@
+[]$ sudo docker pull mongo
+[]$ sudo docker run --name petrMongo -p 27017:27017 -d mongo
+[]$ sudo docker exec -it petrMongo /bin/bash
+root@3a55106e102f:/# mongo
+> use petr
+switched to db petr
+> db.createCollection("saveResults")
+{ "ok" : 1 }
+> exit
+bye
