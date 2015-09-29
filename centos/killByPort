@@ -1,0 +1,1 @@
+ss -apn | grep 8301 | awk -F',' '{ print $2}' | xargs kill
