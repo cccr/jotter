@@ -1,0 +1,9 @@
+
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+# start the ssh-agent in the background
+eval "$(ssh-agent -s)"
+# Agent pid 59566
+Add your SSH key to the ssh-agent:
+
+ssh-add ~/.ssh/id_rsa
