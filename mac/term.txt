@@ -1,0 +1,3 @@
+locate NAME
+lsof -i tcp:8080
+which
