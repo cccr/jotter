@@ -1,0 +1,2 @@
+ls esb-* | tr '\n' ' ' | sed '$a\'
+esb-autor.log esb-re.log esb-sync.log
