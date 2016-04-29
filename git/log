@@ -1,0 +1,1 @@
+git log RC1.0 --since=04/01/2016 --pretty=format:%s | grep ".*CWR-[0-9]*.*" | awk 'match($0, /CWR-[0-9]*/) { print substr( $0, RSTART, RLENGTH )}' | sort | uniq
