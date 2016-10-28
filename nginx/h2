@@ -1,0 +1,67 @@
+echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/sources.list
+apt-get update
+apt-get install -y certbot -t jessie-backports
+apt-get install -y vim
+certbot certonly --webroot -w /usr/share/nginx/html -d example.com --register-unsafely-without-email --text
+ls -la /etc/letsencrypt/live/example.com/
+vim /etc/nginx/conf.d/default.conf
+service nginx reload
+      
+???   openssl dhparam -out /etc/letsencrypt/live/example.com/fullchain.pem 2048
+
+sudo crontab -e
+add:
+30 2 * * 1 /opt/letsencrypt/letsencrypt-auto renew >> /var/log/le-renew.log
+35 2 * * 1 /usr/bin/systemctl reload nginx
+
+nginx conf:
+
+server {
+    # перенаправление с 80 порта, а также с www
+    server_name example.com www.example.com
+    listen 80;
+    return 301 https://www.example.com$request_uri;
+}
+
+
+server {
+        listen      81  default_server http2 proxy_protocol; ## Needed when behind HAProxy with SSL termination + HTTP/2 support
+        listen      443 default_server ssl http2;
+
+        server_name example.com www.example.com;
+
+        # Указываем пути к сертификатам
+        ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; 
+        ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_prefer_server_ciphers on;
+
+        #bash:   openssl dhparam -out /etc/letsencrypt/live/example.com/fullchain.pem 2048
+        #ssl_dhparam /etc/ssl/certs/dhparam.pem;
+        #ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+        
+        ssl_session_timeout 1d;
+        ssl_session_cache shared:SSL:50m;
+
+        # позволяем серверу прикреплять OCSP-ответы, тем самым уменьшая время загрузки страниц у пользователей
+        ssl_stapling on;
+        ssl_stapling_verify on;
+        add_header Strict-Transport-Security max-age=15768000;
+
+        location ~ /.well-known {
+                allow all;
+        }
+
+        # The rest of your server block
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+                # Uncomment to enable naxsi on this location
+                # include /etc/nginx/naxsi.rules
+        }
+}
