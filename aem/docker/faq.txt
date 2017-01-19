@@ -1,0 +1,12 @@
+
+CQ_JVM_OPTS="-Djava.io.tmpdir=/opt/adobecq/tmp ${CQ_JVM_OPTS}"
+# file size limit (ulimit)
+CQ_FILE_SIZE_LIMIT=998192
+
+# -----------------------------------------------------------------------------
+# do not configure below this point
+# -----------------------------------------------------------------------------
+
+if [ $CQ_FILE_SIZE_LIMIT ]; then
+"quickstart" 117L, 2827C written
+[root@262d9b0860d9 bin]# mkdir -p /opt/adobecq/tmp
