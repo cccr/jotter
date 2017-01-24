@@ -1,1 +1,5 @@
 firewall-cmd --add-port=8090/tcp --permanent
+
+
+firewall-cmd --remove-port=8581/tcp --permanent
+firewall-cmd --list-port
