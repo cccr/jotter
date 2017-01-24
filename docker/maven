@@ -1,0 +1,4 @@
+firewall-cmd --add-port=8580/tcp --permanent
+docker pull maven
+# -p HOST_PORT:CONTAINER_PORT
+docker run -d -p 8580:8580 -P --name esb_mock -v /home/hostFolder:/containerFolder maven /bin/bash -c "cd /containerFolder; mvn jetty:run"
