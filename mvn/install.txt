@@ -6,12 +6,4 @@ mvn install:install-file\
   -Dpackaging=jar\
   -DgeneratePom=true
   
-  mvn install:install-file\
-  -Dfile=file-com-2.8.jar\
-  -DgroupId=com.pom.bom\
-  -DartifactId=acme\
-  -Dversion=2.8\
-  -Dpackaging=jar\
-  -DgeneratePom=true
-  
   ^ -- for windows
