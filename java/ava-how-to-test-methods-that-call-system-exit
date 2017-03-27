@@ -1,0 +1,2 @@
+//System.setProperty("compileTarget", System.getProperty("java.vm.specification.version"));
+        // http://stackoverflow.com/questions/309396/java-how-to-test-methods-that-call-system-exit
