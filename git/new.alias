@@ -1,1 +1,7 @@
-git config --global alias.new "!f(){ remoteBranch=${2:-\"DealerPortal\"} && currentBranch=$(git rev-parse --abbrev-ref HEAD) && if [ \"$currentBranch\" != \"$remoteBranch\" ]; then git fetch origin $remoteBranch:$remoteBranch; fi && git checkout -b $1 $remoteBranch && git push -u origin $1 && echo \"Working on $1\"; };f"
+git config --global alias.new "!f(){ remoteBranch=${2:-\"master\"} && currentBranch=$(git rev-parse --abbrev-ref HEAD) && if [ \"$currentBranch\" != \"$remoteBranch\" ]; then git fetch origin $remoteBranch:$remoteBranch; fi && git checkout -b $1 $remoteBranch && git push -u origin $1 && echo \"Working on $1\"; };f"
+
+alias for creating new branch. Very useful for swithing to a new branch from another one.
+
+usage:
+git new feature-001 -- for fetching "master" branch (default value = "master"), creating feature-001 and push upstream
+git new deature-002 develop -- fetching "develop" (second arg), etc...
