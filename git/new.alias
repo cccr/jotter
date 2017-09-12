@@ -1,1 +1,1 @@
-git config --global alias.new "!f(){ git fetch origin $2:$2 && git checkout -b $1 $2 && git push -u origin $1 && echo \"Working on $1\"; };f"
+git config --global alias.new "!f(){ remoteBranch=${2:-\"DealerPortal\"} && currentBranch=$(git rev-parse --abbrev-ref HEAD) && if [ \"$currentBranch\" != \"$remoteBranch\" ]; then git fetch origin $remoteBranch:$remoteBranch; fi && git checkout -b $1 $remoteBranch && git push -u origin $1 && echo \"Working on $1\"; };f"
