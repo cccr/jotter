@@ -1,0 +1,10 @@
+http://www.albertoalmagro.com/en/aem-web-server-doesnt-start-how-to-restart-it-with-apache-gogo/
+
+To install Apache Gogo we will do the following:
+
+Download Gogo bundles: http://felix.apache.org/downloads.cgi
+Command: implements the basic commands.
+Runtime: implements the command processing functionality.
+Shell: provides an interface to interact with the command line.
+Copy these bundles into the crx-quickstart/install folder in order to install them automatically.
+Download the Remote Shell bundle and copy it into the crx-quickstart/install folder.
