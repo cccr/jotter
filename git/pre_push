@@ -1,0 +1,99 @@
+#!/bin/sh
+
+safeRunCommand() {
+  typeset cmnd="$*"
+  typeset ret_code
+
+  eval $cmnd
+  ret_code=$?
+  if [ $ret_code != 0 ]; then
+    printf "Error : [%d] when executing command: '$cmnd'" $ret_code
+    exit $ret_code
+  fi
+}
+
+function get_module() {
+  local path=$1;
+  while true; do
+    path=$(dirname $path);
+    if [ -f "$path/pom.xml" ]; then
+      echo "$path";
+      return;
+    elif [[ "./" =~ "$path" ]]; then
+      return;
+    fi
+  done
+}
+
+commits=();
+affectedFiles=();
+moduleFolders=();
+
+remote="$1"
+url="$2"
+
+z40=0000000000000000000000000000000000000000
+
+while read local_ref local_sha remote_ref remote_sha
+do
+
+echo $local_ref
+echo $local_sha
+echo $remote_ref
+echo $remote_sha
+
+	if [ "$remote_sha" = $z40 ]
+	then
+		# New branch, examine all commits
+		range="$local_sha"
+	else
+		# Update to existing branch, examine new commits
+		range="$remote_sha..$local_sha"
+	fi
+
+  currentBranch=$(git branch | grep \* | cut -d ' ' -f2)
+  commits=( $(git rev-list "$range" --grep=$currentBranch) )
+  for commit in "${commits[@]}"
+  do
+    affectedFiles+=( $(git diff-tree --no-commit-id --name-only -r $commit) )
+  done
+
+  if [ ${#affectedFiles[@]} -eq 0 ]; then
+    exit 0;
+  fi
+
+  #delete duplicates
+  affectedFiles=($(echo "${affectedFiles[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+
+  for file in ${affectedFiles[@]}
+  do
+    moduleFolders+=($(get_module "$file" | cut -d "/" -f2-));
+  done
+
+  if [ ${#moduleFolders[@]} -eq 0 ]; then
+    exit 0;
+  fi
+
+  #delete duplicates
+  moduleFolders=($(echo "${moduleFolders[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+  
+  #delete root
+  delete=cq-webapp
+  moduleFolders=("${moduleFolders[@]/$delete}")
+  
+  modules_arg=$(printf ",%s" "${moduleFolders[@]}");
+  modules_arg=${modules_arg:1};
+
+  echo "modules:"
+  echo $modules_arg
+ 
+  cd cq-webapp
+
+  command="mvn clean -pl $modules_arg"
+  safeRunCommand "$command"
+
+  command="mvn test -pl $modules_arg -amd"
+  safeRunCommand "$command"
+
+  exit 0
+done
