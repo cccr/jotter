@@ -5,7 +5,9 @@ most of bundles here: AEM_6.2_quickstart\static\app\cq-quickstart-6.2.0-load21-s
 
 find bundle by classname or package
   - /system/console/depfinder
+  - /system/console/components
   - https://stackoverflow.com/questions/11914913/find-the-osgi-bundle-that-exports-a-package
+  - fulltext search in AEM_6.2_quickstart\static\app\cq-quickstart-6.2.0-load21-standalone-quickstart\resources\install
   
 goto bundle info (like /system/console/bundles/274)
 find Bundle Location (like launchpad:resources/install/0/cq-wcm-taglib-5.9.16.jar)
