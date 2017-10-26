@@ -1,0 +1,13 @@
+unpack AEM_6.2_quickstart.jar
+goto AEM_6.2_quickstart\static\app
+unpack cq-quickstart-6.2.0-load21-standalone-quickstart.jar
+most of bundles here: AEM_6.2_quickstart\static\app\cq-quickstart-6.2.0-load21-standalone-quickstart\resources\install
+
+find bundle by classname or package
+  - /system/console/depfinder
+  - https://stackoverflow.com/questions/11914913/find-the-osgi-bundle-that-exports-a-package
+  
+goto bundle info (like /system/console/bundles/274)
+find Bundle Location (like launchpad:resources/install/0/cq-wcm-taglib-5.9.16.jar)
+include jar from into Idea (like AEM_6.2_quickstart\static\app\cq-quickstart-6.2.0-load21-standalone-quickstart\resources\install\0\cq-wcm-taglib-5.9.16.jar)
+Profit!
