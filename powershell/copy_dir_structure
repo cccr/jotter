@@ -1,0 +1,7 @@
+robocopy 'C:\Program Files (x86)\Jenkins\jobs' F:\Jenkins_backup\jobs /E /LEV:2
+
+
+robocopy /?
+/E  even empty
+/S  non-empty
+/XF "*.*" exclude files
