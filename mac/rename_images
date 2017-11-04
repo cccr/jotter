@@ -1,2 +1,3 @@
 # brew install jhead
+# http://www.sentex.net/~mwandel/jhead/usage.html
 jhead -n%Y%m%d-%H%M%S *
