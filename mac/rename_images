@@ -1,0 +1,2 @@
+# brew install jhead
+jhead -n%Y%m%d-%H%M%S *
