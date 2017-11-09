@@ -1,0 +1,1 @@
+SELECT * FROM [nt:file] as f WHERE NAME() = 'readonly.jsp' and ISDESCENDANTNODE(f,'/libs')
