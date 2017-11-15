@@ -1,1 +1,4 @@
 SELECT * FROM [nt:file] as f WHERE NAME() = 'readonly.jsp' and ISDESCENDANTNODE(f,'/libs')
+
+
+http://labs.6dglobal.com/blog/2014-10-07/9-jcr-sql-2-queries-every-aem-dev-should-know/
