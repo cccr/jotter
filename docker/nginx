@@ -1,2 +1,6 @@
 sudo docker pull nginx
 sudo docker run --name test-nginx -v /opt/test/frontend:/usr/share/nginx/html:ro -d -p 8780:80 nginx
+
+
+
+docker run -d --name k_com --net reverse-proxy -e 'LETSENCRYPT_EMAIL=mail@mail.com' -e 'LETSENCRYPT_HOST=k.com,www.k.com' -e 'VIRTUAL_HOST=k.com,www.k.com' k-nginx
