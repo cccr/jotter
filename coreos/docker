@@ -1,0 +1,2 @@
+# start daemon on boot
+sudo systemctl enable docker
