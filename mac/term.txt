@@ -2,3 +2,4 @@ locate NAME
 lsof -i tcp:8080
 which
 find . -name '*.txt' -exec sh -c 'mv "$0" "${0%.txt}.txt_bak"' {} \;
+ln -s ../../../../../front/ static
