@@ -1,0 +1,11 @@
+mvn archetype:generate -B -DarchetypeGroupId=org.apache.sling -DarchetypeArtifactId=sling-bundle-archetype -DgroupId=com.company -DartifactId=project4 -Dversion=1.0-SNAPSHOT -Dpackage=com.company.project4
+
+
+
+1: remote -> org.apache.sling:sling-bundle-archetype (Maven archetype for a generic OSGi bundle.)
+2: remote -> org.apache.sling:sling-initial-content-archetype (Maven archetype for initial content)
+3: remote -> org.apache.sling:sling-jcrinstall-bundle-archetype (Maven archetype for a generic OSGi bundle installed via JCR Install.)
+4: remote -> org.apache.sling:sling-launchpad-standalone-archetype (Maven archetype for Sling Launchpad Standalone applications)
+5: remote -> org.apache.sling:sling-launchpad-webapp-archetype (Maven archetype for Sling Launchpad Webapp applications)
+6: remote -> org.apache.sling:sling-servlet-archetype (Maven archetype for Sling Servlets)
+7: remote -> org.apache.sling:sling-slingstart-archetype (Maven archetype for a Sling Slingstart application)
