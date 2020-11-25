@@ -1,0 +1,3 @@
+docker run -it --rm --name certbot -v "~/letsencrypt:/etc/letsencrypt" -v "/var/lib/letsencrypt:/var/lib/letsencrypt" certbot/certbot certonly --manual --preferred-challenges dns
+
+docker run -v /Users/mart/letsencrypt:/backup -v "/etc/letsencrypt:/etc/letsencrypt" busybox tar cvf /backup/backup.tar /etc/letsencrypt/live
