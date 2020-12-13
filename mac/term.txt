@@ -7,5 +7,8 @@ ln -s ../../../../../front/ static
 
 diff -rq ~/iCloud\ Drive\ \(Archive\)/live/ ~/Library/Mobile\ Documents/com~apple~CloudDocs/live/
 
+diff -s --speed-large-files /Volumes/5T/z6/100NCZ_6/ /Volumes/5T/z6/boston/ | grep "identical" | cut -d ' ' -f 2 >> /Volumes/5T/z6/100NCZ_6/boston.txt
+rm -f $(</Volumes/5T/z6/100NCZ_6/boston.txt)
+
 
 sudo powermetrics|grep -i "CPU die temperature"
