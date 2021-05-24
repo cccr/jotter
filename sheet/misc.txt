@@ -1,0 +1,13 @@
+=QUERY({Breakdown!$A$2:$B}, 
+ "select Col1 
+  where Col2 = 'Warrior' 
+    and not Col1 matches '"&TEXTJOIN("|", 1, 'Raid Comp'!A2:Q10)&"'  
+  order by Col1 asc")
+  
+by https://stackoverflow.com/questions/60948828/google-sheets-queries-and-not-in
+
+
+^\s*$ -- replace empty cells
+
+
+=IFNA(QUERY(IMPORTRANGE("url", "Tab!A1:CC1000"), "select Col31 where Col3 = '"&$F2&"'", FALSE), "N/A")
