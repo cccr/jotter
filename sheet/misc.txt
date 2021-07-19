@@ -11,3 +11,6 @@ by https://stackoverflow.com/questions/60948828/google-sheets-queries-and-not-in
 
 
 =IFNA(QUERY(IMPORTRANGE("url", "Tab!A1:CC1000"), "select Col31 where Col3 = '"&$F2&"'", FALSE), "N/A")
+
+
+=VLOOKUP(C7, $A$1:$A$100, 1, FALSE)
