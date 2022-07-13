@@ -1,0 +1,2 @@
+=COUNTIF(INDIRECT("Sheet2!$A$1:$A$3"), REGEXEXTRACT($C1, "^[A-Z0-9]*-[A-Z0-9]*-[A-Z0-9]*")) = 1
+=COUNTIF($A$1:$A$3, $C1) = 1
