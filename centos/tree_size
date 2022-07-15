@@ -1,0 +1,1 @@
+sudo du -xh /usr/local --max-depth=1 | sort -rh | head -n 11 - | sed 1d
