@@ -1,2 +1,3 @@
 # start daemon on boot
 sudo systemctl enable docker
+sudo systemctl enable --now docker.service
